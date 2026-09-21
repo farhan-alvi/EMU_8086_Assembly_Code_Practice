@@ -1,0 +1,121 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+
+MSG1 DB 'Enter Player 1 name: $'
+MSG2 DB 13,10,'Enter Player 1 point: $'
+
+MSG3 DB 13,10,'Enter Player 2 name: $'
+MSG4 DB 13,10,'Enter Player 2 point: $'
+
+MSG5 DB 13,10,'Player $'
+MSG6 DB ' gain the point: $'
+
+P1 DB ?
+P2 DB ?
+
+N1 DB ?
+N2 DB ?
+
+.CODE
+
+MAIN PROC
+
+MOV AX,@DATA
+MOV DS,AX
+
+
+; Input Player 1 Name
+
+LEA DX,MSG1
+MOV AH,09H
+INT 21H
+
+MOV AH,01H
+INT 21H
+
+MOV P1,AL
+
+
+; Input Player 1 Point
+
+LEA DX,MSG2
+MOV AH,09H
+INT 21H
+
+MOV AH,01H
+INT 21H
+
+MOV N1,AL
+
+
+; Input Player 2 Name
+
+LEA DX,MSG3
+MOV AH,09H
+INT 21H
+
+MOV AH,01H
+INT 21H
+
+MOV P2,AL
+
+
+; Input Player 2 Point
+
+LEA DX,MSG4
+MOV AH,09H
+INT 21H
+
+MOV AH,01H
+INT 21H
+
+MOV N2,AL
+
+
+; Display Player 1 Result
+
+LEA DX,MSG5
+MOV AH,09H
+INT 21H
+
+MOV DL,P1
+MOV AH,02H
+INT 21H
+
+LEA DX,MSG6
+MOV AH,09H
+INT 21H
+
+MOV DL,N1
+MOV AH,02H
+INT 21H
+
+
+; Display Player 2 Result
+
+LEA DX,MSG5
+MOV AH,09H
+INT 21H
+
+MOV DL,P2
+MOV AH,02H
+INT 21H
+
+LEA DX,MSG6
+MOV AH,09H
+INT 21H
+
+MOV DL,N2
+MOV AH,02H
+INT 21H
+
+
+; Exit Program
+
+MOV AH,4CH
+INT 21H
+
+MAIN ENDP
+END MAIN

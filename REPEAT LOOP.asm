@@ -1,0 +1,18 @@
+.MODEL SMALL
+.STACK 100H
+
+.CODE
+ MAIN PROC
+    
+    REPEAT:
+    MOV AH,01H
+    INT 21H
+    
+    CMP AL,' '
+    JNE REPEAT                 ;JUMP IF NOT EQUAL
+  
+    MOV AH,4CH
+    INT 21H
+    
+    MAIN ENDP
+ END MAIN
